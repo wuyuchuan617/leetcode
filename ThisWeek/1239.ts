@@ -30,5 +30,16 @@ function maxLength(arr: string[]): number {
 // ------------------------- Jacob -------------------------
 
 // ------------------------- Eva -------------------------
-
+// Runtime 75 ms Beats 75.33% / Memory 42.3 MB Beats 96.82%
+var checkDistances = function(s, distance) {
+  for (let i = 0; i < s.length; i++) {
+  for (let j = i + 1; j < s.length; j++) {
+    if (s[i] === s[j]) {
+      if (distance[s[i].charCodeAt() - 'a'.charCodeAt(0)] !== j - i - 1) return false;
+      break;
+    }
+  }
+}
+return true;
+};
 // ------------------------- Grace -------------------------
