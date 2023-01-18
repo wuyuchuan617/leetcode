@@ -24,25 +24,47 @@ function checkDistances(s: string, distance: number[]): boolean {
 // ------------------------- Jacob -------------------------
 
 // ------------------------- Eva -------------------------
-var maxLength = function(arr) {
-    const set = new Set(['']);
-    let max = 0;
-    let str;
-    
-    for(let i = 0; i < arr.length; i++) {
-        const values = [...set.values()];
-        
-        for(let j = 0; j < values.length; j++) {     
-            str = `${values[j]}${arr[i]}`;
-            set.add(str);
-            let newStr = [...new Set(str).values()].join('');
-            
-            if (str === newStr) {
-                max = Math.max(str.length, max);    
-            }            
-        }
+var maxLength = function (arr) {
+  const set = new Set([""]);
+  let max = 0;
+  let str;
+
+  for (let i = 0; i < arr.length; i++) {
+    const values = [...set.values()];
+
+    for (let j = 0; j < values.length; j++) {
+      str = `${values[j]}${arr[i]}`;
+      set.add(str);
+      let newStr = [...new Set(str).values()].join("");
+
+      if (str === newStr) {
+        max = Math.max(str.length, max);
+      }
     }
-    
-    return max;
+  }
+
+  return max;
 };
 // ------------------------- Grace -------------------------
+
+// ------------------------- Jay -------------------------
+// Runtime: 82ms Beats: 68.75% Memory: 46.9 MB Beats: 31.25%
+function checkDistances(s: string, distance: number[]): boolean {
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  const counter: any = {};
+  for (let i = 0; i < s.length; i++) {
+    if (counter[s[i]]) {
+      counter[s[i]]++;
+    } else {
+      counter[s[i]] = 1;
+    }
+  }
+
+  for (let char in counter) {
+    let alphIndex = alphabet.indexOf(char);
+    let left = s.indexOf(char);
+    let right = left + 1;
+    if (s[left] !== s[right + distance[alphIndex]]) return false;
+  }
+  return true;
+}
