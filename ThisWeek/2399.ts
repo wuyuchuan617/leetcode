@@ -23,6 +23,29 @@ function checkDistances(s: string, distance: number[]): boolean {
 
 // ------------------------- Jacob -------------------------
 
+function maxLength(arr: string[]): number {
+  const set = new Set([""]);
+  let max = 0;
+  let str = "";
+
+  for (let i = 0; i < arr.length; i++) {
+    const values = [...set];
+
+    for (let j = 0; j < values.length; j++) {
+      // 每次i進來後，values會越來越長
+      str = `${values[j]}${arr[i]}`;
+      // 每次組合新的字就存回去set內
+      set.add(str);
+      let newStr = [...new Set(str)].join("");
+      if (str === newStr) {
+        max = Math.max(str.length, max);
+      }
+    }
+  }
+
+  return max;
+}
+
 // ------------------------- Eva -------------------------
 var maxLength = function (arr) {
   const set = new Set([""]);
