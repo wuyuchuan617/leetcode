@@ -1,8 +1,5 @@
-# leetcode
-
-- 從 main 開自己的 branch，一題一個 commit 
-- commit 格式 Name (`#1234`)
-- 發 PR 方式 rebase merge into main
+// https://leetcode.com/problems/reverse-vowels-of-a-string/
+// 345. Reverse Vowels of a String
 
 // ------------------------- Jacob -------------------------
 
