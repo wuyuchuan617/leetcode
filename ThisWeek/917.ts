@@ -57,6 +57,27 @@ var reverseOnlyLetters = function (s) {
 };
 
 // ------------------------- Jay -------------------------
+// Runtime 61 ms Beats 90.63% Memory 44.3 MB Beats 56.25%
+function reverseOnlyLetters(s: string): string {
+  let output = s.split("");
+  let left = 0;
+  let right = s.length - 1;
+
+  while (left < right) {
+    if (!/^[a-zA-Z]*$/.test(output[left])) {
+      left++;
+    } else if (!/^[a-zA-Z]*$/.test(output[right])) {
+      right--;
+    } else {
+      const temp = output[left];
+      output[left] = output[right];
+      output[right] = temp;
+      left++;
+      right--;
+    }
+  }
+  return output.join("");
+}
 
 // ------------------------- Grace -------------------------
 // 917 : Runtime 73 ms Beats 60% / Memory 44.2 MB Beats 73.33%
