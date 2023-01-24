@@ -5,6 +5,32 @@
 
 
 // ------------------------- Jacob -------------------------
+// Runtime.66% Memory.66%
+function maximumTop(nums: number[], k: number): number {
+  const isKOdd = k % 2 === 1;
+  let biggest = -1;
+
+  //極端個案，nums一個且操作只能奇數
+  if (isKOdd && nums.length === 1) {
+    return biggest;
+  }
+
+  //極端個案，k小於2
+  if (k <= 1) {
+    return nums[k];
+  }
+
+  //通常個案，檢查所有 k-1 內數字，第k個只能被移除，跳過。k>nums.length時，直接用全陣列尋找即可
+  for (let i = 0; i < (k > nums.length ? nums.length : k - 1); i++) {
+    biggest = Math.max(biggest, nums[i]);
+  }
+
+  //極端個案，全部移除不加入時，查看第一個是否最大
+  if (Boolean(nums[k])) {
+    biggest = Math.max(biggest, nums[k]);
+  }
+  return biggest;
+}
 
 // ------------------------- Eva -------------------------
 
