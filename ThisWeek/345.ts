@@ -3,6 +3,36 @@
 // 1. 把 string 中母音的順序反轉
 
 // ------------------------- Jacob -------------------------
+// Runtime.58% Memory. 10%
+function reverseVowels(s: string): string {
+  const stringArray = [...s];
+
+  //先選出所有字母
+  const vowelsArray = stringArray.filter((item: string) => {
+    const formatChar = item.toLowerCase();
+    return (
+      formatChar === "a" ||
+      formatChar === "e" ||
+      formatChar === "i" ||
+      formatChar === "o" ||
+      formatChar === "u"
+    );
+  });
+
+  return stringArray
+    .map((item: string) => {
+      const formatChar = item.toLowerCase();
+      //如果發現是字母，從篩選的陣列最後一個塞入
+      return formatChar === "a" ||
+        formatChar === "e" ||
+        formatChar === "i" ||
+        formatChar === "o" ||
+        formatChar === "u"
+        ? vowelsArray.pop()
+        : item;
+    })
+    .join("");
+}
 
 // ------------------------- Eva -------------------------
 
