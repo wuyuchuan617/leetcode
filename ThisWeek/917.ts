@@ -4,6 +4,32 @@
 // 2. 為 a-z or A-Z 的元素要反轉
 
 // ------------------------- Jacob -------------------------
+// Runtime.88% Memory.20%
+function reverseOnlyLetters(s: string): string {
+  const replaceArray = [...s];
+
+  //確認是否為英文字
+  const checkIsLetter = (item: string) => {
+    const letterDistanceToA =
+      item.toLowerCase().charCodeAt(0) - "a".charCodeAt(0);
+    const isLetter = letterDistanceToA >= 0 && 26 > letterDistanceToA;
+    return isLetter;
+  };
+
+  //拿出可以置換的英文字，如果非英文字則遞迴往下拿
+  const getReplaceLetter = () => {
+    const replaceItem = replaceArray.pop();
+    const isReplaceItemLetter = checkIsLetter(replaceItem);
+    return isReplaceItemLetter ? replaceItem : getReplaceLetter();
+  };
+
+  return [...s]
+    .map((item: string) => {
+      const isLetter = checkIsLetter(item);
+      return isLetter ? getReplaceLetter() : item;
+    })
+    .join("");
+}
 
 // ------------------------- Eva -------------------------
 
