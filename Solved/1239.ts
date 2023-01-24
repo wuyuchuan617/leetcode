@@ -60,3 +60,20 @@ var checkDistances = function (s, distance) {
   return true;
 };
 // ------------------------- Grace -------------------------
+
+// Runtime 106 ms Beats 100% , Memory 49.5 MB Beats 50%
+function maxLength(arr: string[]): number {
+  let max = 0
+  const check = (idx:number, s:string)=>{
+
+      if(s.length !== new Set([...s]).size) return
+
+      max = Math.max(max, s.length)
+
+      for(let i=idx ; i<arr.length;i++){
+          check(i+1, s+arr[i])
+      }
+  }
+  check(0,'')
+  return max
+};

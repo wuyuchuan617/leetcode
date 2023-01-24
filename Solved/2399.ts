@@ -70,6 +70,20 @@ var maxLength = function (arr) {
 };
 // ------------------------- Grace -------------------------
 
+// Runtime: 91 ms Beats 50%, Memory: 46.8 MB Beats 31.25%
+function checkDistances(s: string, distance: number[]): boolean {
+  let position = {}
+  for(let i =0; i<s.length; i++){
+      if(position[s[i]] !== undefined){
+           position[s[i]] = i - position[s[i]] - 1 //same char distance
+          if(position[s[i]] !== distance[s.charCodeAt(i) - 'a'.charCodeAt(0)]) return false
+      } else {
+          position[s[i]] = i
+      }
+  }
+
+  return true
+};
 // ------------------------- Jay -------------------------
 // Runtime: 82ms Beats: 68.75% Memory: 46.9 MB Beats: 31.25%
 function checkDistances(s: string, distance: number[]): boolean {
