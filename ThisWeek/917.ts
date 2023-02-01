@@ -32,6 +32,29 @@ function reverseOnlyLetters(s: string): string {
 }
 
 // ------------------------- Eva -------------------------
+// Runtime 68 ms Beats 60.75% Memory 42.3 MB Beats 47.4%
+const regex = /^[a-zA-Z]$/;
+var reverseOnlyLetters = function (s) {
+  let ans = "";
+  let start = 0;
+  let end = s.length - 1;
+
+  while (start < s.length) {
+    if (!regex.test(s[end]) && end >= 0) {
+      end--;
+      continue;
+    }
+    if (regex.test(s[start])) {
+      ans += s[end];
+      end--;
+    } else {
+      ans += s[start];
+    }
+    start++;
+  }
+
+  return ans;
+};
 
 // ------------------------- Jay -------------------------
 // Runtime 61 ms Beats 90.63% Memory 44.3 MB Beats 56.25%
@@ -57,6 +80,17 @@ function reverseOnlyLetters(s: string): string {
 }
 
 // ------------------------- Grace -------------------------
+// 917 : Runtime 73 ms Beats 60% / Memory 44.2 MB Beats 73.33%
+function reverseOnlyLetters(s: string): string {
+  const _s = [...s];
+  let newS = "";
+  const reg = /[a-zA-Z]/g;
+  const letters = s.match(reg);
+  _s.forEach((e: string) => {
+    newS += /^[a-zA-Z]/g.test(e) ? letters.pop() : e;
+  });
+  return newS;
+}
 
 // ------------------------- Yu Chuan -------------------------
 //Runtime 73 ms Beats 60% / Memory 44 MB Beats 73.33%

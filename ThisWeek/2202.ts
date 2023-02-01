@@ -3,7 +3,6 @@
 
 // 1. 移動 k 步後，return index 0 可以的最大值
 
-
 // ------------------------- Jacob -------------------------
 // Runtime.66% Memory.66%
 function maximumTop(nums: number[], k: number): number {
@@ -33,10 +32,49 @@ function maximumTop(nums: number[], k: number): number {
 }
 
 // ------------------------- Eva -------------------------
+// Runtime 86 ms Beats 61.36% Memory 51.5 MB Beats 88.64%
+var maximumTop = function (nums, k) {
+  if (k == 0) {
+    if (nums.length >= 1) return nums[0];
+    return -1;
+  }
+
+  if (k == 1) {
+    if (nums.length >= 2) return nums[1];
+    return -1;
+  }
+
+  if (nums.length == 1) {
+    if (k % 2 == 1) return -1;
+    else return nums[0];
+  }
+
+  let max = 0;
+  for (let i = 0; i < Math.min(k - 1, nums.length); i++) {
+    max = Math.max(max, nums[i]);
+  }
+
+  if (k < nums.length) {
+    max = Math.max(max, nums[k]);
+  }
+
+  return max;
+};
 
 // ------------------------- Jay -------------------------
 
 // ------------------------- Grace -------------------------
+// 2202 : Runtime 80 ms Beats 88.89% / Memory 53 MB Beats 77.78%
+function maximumTop(nums: number[], k: number): number {
+  const size = nums.length;
+  let max = k >= size ? 0 : nums[k];
+
+  if (size === 1 && k % 2 !== 0) return -1;
+  for (let i = 0; i < Math.min(size, k - 1); i++) {
+    max = Math.max(max, nums[i]);
+  }
+  return max;
+}
 
 // ------------------------- Yu Chuan -------------------------
 // Runtime 70 ms Beats 100% / Memory 53.8 MB Beats 50%
@@ -58,8 +96,7 @@ function maximumTop(nums: number[], k: number): number {
   const sortNums = [...nums].sort((a, b) => b - a);
 
   const topMost = sortNums.find((item) => {
-
-    // 從最大的開始去找他在原本 nums 中的 index，找到第一個符合 indexAtNums < k - 1 
+    // 從最大的開始去找他在原本 nums 中的 index，找到第一個符合 indexAtNums < k - 1
     // k -1 步是因為最後一步要把這個元素加回來
     const indexAtNums = nums.findIndex((element) => element === item);
     return indexAtNums < k - 1;

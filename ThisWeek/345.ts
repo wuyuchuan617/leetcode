@@ -35,6 +35,28 @@ function reverseVowels(s: string): string {
 }
 
 // ------------------------- Eva -------------------------
+// Runtime 71 ms Beats 98.12% Memory 47.5 MB Beats 94.1%
+const VOWELS = "aeiouAEIOU";
+var reverseVowels = function (s) {
+  const arr = [...s];
+
+  for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+    //指針左邊端
+    while (!VOWELS.includes(arr[i]) && i < j) {
+      i++;
+    }
+
+    //指針右邊端
+    while (!VOWELS.includes(arr[j]) && i < j) {
+      j--;
+    }
+
+    //如果VOWELS.includes(arr[i])&&VOWELS.includes(arr[j])
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+
+  return arr.join("");
+};
 
 // ------------------------- Jay -------------------------
 // Runtime 87 ms Beats 84.4% // Memory 48.5 MB Beats 90.43%
@@ -61,6 +83,22 @@ function reverseVowels(s: string): string {
 }
 
 // ------------------------- Grace -------------------------
+//345 : Runtime 97 ms Beats 60.95% / Memory 54.9 MB Beats 8.57%
+function reverseVowels(s: string): string {
+  const _string = [...s];
+  let vowelChar = [];
+  for (let i = 0; i < s.length; i++) {
+    if (/^[aeiou]$/i.test(s[i])) {
+      vowelChar.push(s[i]);
+    }
+  }
+  const newString = _string
+    .map((e: string) => {
+      return /^[aeiou]$/i.test(e) ? vowelChar.pop() : e;
+    })
+    .join("");
+  return newString;
+}
 
 // ------------------------- Yu Chuan -------------------------
 // Runtime 90 ms Beats 77.66% / Memory 49.1 MB Beats 79.79%
