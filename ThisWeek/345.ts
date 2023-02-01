@@ -35,6 +35,28 @@ function reverseVowels(s: string): string {
 }
 
 // ------------------------- Eva -------------------------
+// Runtime 71 ms Beats 98.12% Memory 47.5 MB Beats 94.1%
+const VOWELS = "aeiouAEIOU";
+var reverseVowels = function (s) {
+  const arr = [...s];
+
+  for (let i = 0, j = arr.length - 1; i < j; i++, j--) {
+    //指針左邊端
+    while (!VOWELS.includes(arr[i]) && i < j) {
+      i++;
+    }
+
+    //指針右邊端
+    while (!VOWELS.includes(arr[j]) && i < j) {
+      j--;
+    }
+
+    //如果VOWELS.includes(arr[i])&&VOWELS.includes(arr[j])
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+
+  return arr.join("");
+};
 
 // ------------------------- Jay -------------------------
 
