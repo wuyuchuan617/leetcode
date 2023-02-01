@@ -32,6 +32,29 @@ function reverseOnlyLetters(s: string): string {
 }
 
 // ------------------------- Eva -------------------------
+// Runtime 68 ms Beats 60.75% Memory 42.3 MB Beats 47.4%
+const regex = /^[a-zA-Z]$/;
+var reverseOnlyLetters = function (s) {
+  let ans = "";
+  let start = 0;
+  let end = s.length - 1;
+
+  while (start < s.length) {
+    if (!regex.test(s[end]) && end >= 0) {
+      end--;
+      continue;
+    }
+    if (regex.test(s[start])) {
+      ans += s[end];
+      end--;
+    } else {
+      ans += s[start];
+    }
+    start++;
+  }
+
+  return ans;
+};
 
 // ------------------------- Jay -------------------------
 
