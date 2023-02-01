@@ -61,6 +61,22 @@ var reverseVowels = function (s) {
 // ------------------------- Jay -------------------------
 
 // ------------------------- Grace -------------------------
+//345 : Runtime 97 ms Beats 60.95% / Memory 54.9 MB Beats 8.57%
+function reverseVowels(s: string): string {
+  const _string = [...s];
+  let vowelChar = [];
+  for (let i = 0; i < s.length; i++) {
+    if (/^[aeiou]$/i.test(s[i])) {
+      vowelChar.push(s[i]);
+    }
+  }
+  const newString = _string
+    .map((e: string) => {
+      return /^[aeiou]$/i.test(e) ? vowelChar.pop() : e;
+    })
+    .join("");
+  return newString;
+}
 
 // ------------------------- Yu Chuan -------------------------
 // Runtime 90 ms Beats 77.66% / Memory 49.1 MB Beats 79.79%
