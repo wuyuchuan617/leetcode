@@ -59,6 +59,17 @@ var reverseOnlyLetters = function (s) {
 // ------------------------- Jay -------------------------
 
 // ------------------------- Grace -------------------------
+// 917 : Runtime 73 ms Beats 60% / Memory 44.2 MB Beats 73.33%
+function reverseOnlyLetters(s: string): string {
+  const _s = [...s];
+  let newS = "";
+  const reg = /[a-zA-Z]/g;
+  const letters = s.match(reg);
+  _s.forEach((e: string) => {
+    newS += /^[a-zA-Z]/g.test(e) ? letters.pop() : e;
+  });
+  return newS;
+}
 
 // ------------------------- Yu Chuan -------------------------
 //Runtime 73 ms Beats 60% / Memory 44 MB Beats 73.33%
