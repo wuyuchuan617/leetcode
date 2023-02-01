@@ -26,6 +26,16 @@ function removeStars(s: string): string {
 }
 
 // ------------------------- Eva -------------------------
+// Runtime 117 ms Beats 55.65% Memory 57 MB Beats 23.48%
+
+var removeStars = function (s) {
+  st = [];
+  for (const i of s) {
+    if (i == "*") st.pop();
+    else st.push(i);
+  }
+  return st.join("");
+};
 
 // ------------------------- Jay -------------------------
 
