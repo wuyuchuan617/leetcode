@@ -23,52 +23,56 @@ function checkDistances(s: string, distance: number[]): boolean {
 
 // ------------------------- Jacob -------------------------
 
-function maxLength(arr: string[]): number {
-  const set = new Set([""]);
-  let max = 0;
-  let str = "";
-
-  for (let i = 0; i < arr.length; i++) {
-    const values = [...set];
-
-    for (let j = 0; j < values.length; j++) {
-      // 每次i進來後，values會越來越長
-      str = `${values[j]}${arr[i]}`;
-      // 每次組合新的字就存回去set內
-      set.add(str);
-      let newStr = [...new Set(str)].join("");
-      if (str === newStr) {
-        max = Math.max(str.length, max);
+function checkDistances(s: string, distance: number[]): boolean {
+  let answer = true;
+  const alphabets = "abcdefghijklmnopqrstuvwxyz".split("");
+  const testArray = s.split("");
+  for (let i = 0; i < 26; i++) {
+    const letter = alphabets[i];
+    const firstIndex = testArray.indexOf(letter);
+    if (firstIndex !== -1) {
+      const disItem = distance[i];
+      testArray.splice(firstIndex, 1, "");
+      const secondIndex = testArray.indexOf(letter);
+      if (secondIndex - firstIndex - 1 !== disItem) {
+        return (answer = false);
       }
     }
   }
-
-  return max;
+  return answer;
 }
 
 // ------------------------- Eva -------------------------
-var maxLength = function (arr) {
-  const set = new Set([""]);
-  let max = 0;
-  let str;
 
-  for (let i = 0; i < arr.length; i++) {
-    const values = [...set.values()];
-
-    for (let j = 0; j < values.length; j++) {
-      str = `${values[j]}${arr[i]}`;
-      set.add(str);
-      let newStr = [...new Set(str).values()].join("");
-
-      if (str === newStr) {
-        max = Math.max(str.length, max);
+// Runtime 75 ms Beats 75.33% / Memory 42.3 MB Beats 96.82%
+var checkDistances = function (s, distance) {
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j < s.length; j++) {
+      if (s[i] === s[j]) {
+        if (distance[s[i].charCodeAt() - "a".charCodeAt(0)] !== j - i - 1)
+          return false;
+        break;
       }
     }
   }
-
-  return max;
+  return true;
 };
+
 // ------------------------- Grace -------------------------
+function checkDistances(s: string, distance: number[]): boolean {
+  let position = {};
+  for (let i = 0; i < s.length; i++) {
+    if (position[s[i]] !== undefined) {
+      position[s[i]] = i - position[s[i]] - 1; //same char distance
+      if (position[s[i]] !== distance[s.charCodeAt(i) - "a".charCodeAt(0)])
+        return false;
+    } else {
+      position[s[i]] = i;
+    }
+  }
+
+  return true;
+}
 
 // Runtime: 91 ms Beats 50%, Memory: 46.8 MB Beats 31.25%
 function checkDistances(s: string, distance: number[]): boolean {

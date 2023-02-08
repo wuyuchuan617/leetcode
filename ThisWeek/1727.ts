@@ -1,5 +1,5 @@
-// https://leetcode.com/problems/removing-stars-from-a-string/
-// 2390. Removing Stars From a String
+// 1727. Largest Submatrix With Rearrangements
+// https://leetcode.com/problems/largest-submatrix-with-rearrangements/
 
 // ------------------------- Jacob -------------------------
 
